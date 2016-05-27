@@ -1,0 +1,12 @@
+task filterFiles << {
+    def rootFiles = files('INSTALL', 'README')
+
+    // Filter for files with a txt extension.
+    def smallFiles = rootFiles.filter { file ->
+        file.name.endsWith 'txt'
+    }
+
+    rootFiles = rootFiles + files('LICENSE.txt')
+    // smallFiles now contains 2 files:
+    // INSTALL and LICENSE
+}

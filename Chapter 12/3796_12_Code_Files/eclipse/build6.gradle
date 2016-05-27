@@ -1,0 +1,45 @@
+apply plugin: 'java'
+apply plugin: 'war'
+apply plugin: 'eclipse-wtp'
+
+version = 1.0
+
+description = 'Sample project'
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+    testCompile 'junit:junit:4.11'
+}
+
+eclipse {
+    wtp {
+        component {
+            file {
+                beforeMerged { wtpComponent ->
+                    wtpComponent.wbEntries.clear()
+                }
+
+                whenMerged { wtpComponent ->
+                    wtpComponent.contextPath = '/sample-web'
+                    wtpComponent.deployName = 'sample'
+                }
+            }
+        }
+
+        facet {
+            file {
+                beforeMerged { wtpFacet ->
+                    // Do nothing.
+                }
+
+                whenMerged { wtpFacet ->
+                    def java = wtpFacet.facets.find { it.facet == 'jst.java' }
+                    java.version = '8.0'
+                }
+            }
+        }
+    }
+}

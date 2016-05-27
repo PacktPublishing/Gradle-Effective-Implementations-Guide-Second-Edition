@@ -1,0 +1,14 @@
+apply plugin: 'java'
+
+ext {
+    springGroup = 'org.springframework'
+    springRelease = '4.2.3.RELEASE'
+}
+
+dependencies {
+    compile module("$springGroup:spring-context:$springRelease") {
+        dependency("$springGroup:spring-aop:$springRelease") {
+            transitive = false
+        }
+    }
+}

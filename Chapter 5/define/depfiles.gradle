@@ -1,0 +1,16 @@
+repositories {
+    jcenter()
+}
+
+configurations {
+    springLibs
+}
+
+dependencies {
+    springLibs('org.springframework:spring-web:4.2.3.RELEASE')
+}
+
+task copyCompileDeps(type: Copy) {
+    from configurations.springLibs
+    into "$buildDir/compileLibs"
+}

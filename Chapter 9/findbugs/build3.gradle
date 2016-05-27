@@ -1,0 +1,28 @@
+apply plugin: 'java'
+apply plugin: 'findbugs'
+
+repositories {
+    jcenter()
+}
+
+findbugs {
+    // Change base directory for FindBugs reports.
+    reportsDir = file("${reporting.baseDir}/findbugs-output")
+}
+
+// Configure the findbugs task for the main source set.
+findbugsMain {
+    reports {
+        html {
+            enabled = true
+
+            // Change output file name.
+            destination = "${findbugs.reportsDir}/findbugs.html"
+        }
+
+        // Only one report (xml or html) can be active.
+        xml {
+            enabled = !html.enabled
+        }
+    }
+}

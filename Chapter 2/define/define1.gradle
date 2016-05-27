@@ -1,0 +1,17 @@
+task first {
+    doFirst {
+        println 'Running first'
+    }
+}
+
+task second {
+    doLast { Task task ->
+        println "Running ${task.name}"
+    }
+}
+
+// Here we use the << operator
+// as synonym for the doLast method.
+task third << { taskObject ->
+    println 'Running ' + taskObject.name
+}

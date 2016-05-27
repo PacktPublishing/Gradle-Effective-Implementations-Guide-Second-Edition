@@ -1,0 +1,13 @@
+def fileCollection = files('README', [new File('INSTALL')])
+
+// Get all elements as File objects.
+def allFiles = fileCollection.files
+
+// Or use casting with as keyword.
+def fileObjects = fileCollection as File[]
+
+
+def singleFileCollection = files('INSTALL')
+
+// Get single file as File object.
+def installFile = singleFileCollection.singleFile

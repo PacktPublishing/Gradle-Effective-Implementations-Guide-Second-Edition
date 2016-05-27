@@ -1,0 +1,30 @@
+apply plugin: 'java'
+apply plugin: 'jdepend'
+
+repositories {
+    // Repository is need to the JDepend dependencies
+    // can be downloaded.
+    jcenter()
+}
+
+// We can change the version of JDepend to be used.
+jdepend{
+    reportsDir = file("${reporting.baseDir}/jdepend-output")
+}
+
+// Configure JDepend for the main source set.
+jdependMain {
+    reports {
+        // Configure text output.
+        text {
+            enabled = true
+
+            // Set destination file.
+            destination = file("${jdepend.reportsDir}/jdepend.txt")
+        }
+        xml {
+            // Only text or XML output can be enabled.
+            enabled = !text.enabled
+        }
+    }
+}

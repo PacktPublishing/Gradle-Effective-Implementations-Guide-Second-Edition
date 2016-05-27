@@ -1,0 +1,7 @@
+// File: buildSrc/build.gradle
+
+// Add new action to the build task
+// for the buildSrc directory.
+build.doLast {
+    println 'Done building buildSrc'
+}

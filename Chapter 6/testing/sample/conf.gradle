@@ -1,0 +1,26 @@
+apply plugin: 'java'
+
+repositories {
+    jcenter()
+}
+
+dependencies {
+    testCompile('junit:junit:4.12')
+}
+
+test {
+    // Add System property to running tests.
+    systemProperty 'sysProp', 'value'
+
+    // Use the following JVM arguments for each test process.
+    jvmArgs '-Xms256m', '-Xmx512m'
+
+    // Enable debugging mode.
+    debug = true
+
+    // Ignore any test failues and don't fail the build.
+    ignoreFailures = true
+
+    // Enable assertions for test with the assert keyword.
+    enableAssertions = true
+}

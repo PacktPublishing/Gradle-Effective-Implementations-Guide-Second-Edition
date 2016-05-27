@@ -1,0 +1,10 @@
+// Use String instances.
+def multiple =
+    files('README', 'licence.txt')
+
+// Use File objects.
+def userFiles =
+    files(new File('README'), new File('INSTALL'))
+
+// We can combine different argument types.
+def combined = files('README', new File('INSTALL'))

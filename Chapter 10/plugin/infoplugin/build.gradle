@@ -1,0 +1,34 @@
+apply plugin: 'groovy'
+apply plugin: 'maven'
+
+version = '1.0'
+group = 'sample.infoplugin'
+
+// Set name of archive containing the plugin.
+archivesBaseName = 'infoplugin'
+
+repositories {
+    jcenter()
+}
+
+dependencies {
+    // Define dependency on the Gradle API.
+    compile gradleApi()
+
+    // Define dependency on the Groovy version
+    // bundled with Gradle.
+    compile localGroovy()
+
+    testCompile 'junit:junit:4.12'
+}
+
+uploadArchives {
+    repositories {
+        mavenDeployer {
+            // Define a local directory as the
+            // Maven repository where the plugin
+            // is deployed to.
+            repository(url: 'file:../lib')
+        }
+    }
+}

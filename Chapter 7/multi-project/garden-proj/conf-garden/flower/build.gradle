@@ -1,0 +1,8 @@
+evaluationDependsOn(':tree')
+
+ext.message = rootProject.hasProperty('treeMessage') ?
+    rootProject.treeMessage : 'is not set'
+
+printInfo << {
+    println "Tree say ${message}"
+}

@@ -1,0 +1,20 @@
+apply plugin: 'groovy'
+
+repositories {
+    jcenter()
+}
+
+dependencies {
+    // Use String notation to define dependency.
+    compile 'org.codehaus.groovy:groovy:2.4.5'
+}
+
+// New task to print out source set properties
+// added by the Groovy plugin.
+task groovySourceSetProperties << {
+    sourceSets.main.with { sourceSet ->
+        println "groovy.srcDirs = ${sourceSet.groovy.srcDirs}"
+        println "groovy.files = ${sourceSet.groovy.files.name}"
+        println "allGroovy.files = ${sourceSet.allGroovy.files.name}"
+    }
+}

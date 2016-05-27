@@ -1,0 +1,22 @@
+apply plugin: 'java'
+apply plugin: 'pmd'
+
+repositories {
+    jcenter()
+}
+
+pmd {
+    // Add rule sets with the ruleSets method.
+    ruleSets 'design', 'braces'
+
+    // Or use property syntax.
+    // ruleSets = ['design', 'braces']
+
+    // Set rule set files via the task
+    // property ruleSetFiles.
+    ruleSetFiles = files('config/pmd/customRules.xml')
+
+    // Or use ruleSetFiles method to add new file
+    // to existing collection of files.
+    //ruleSetFiles file('config/pmd/customRules.xml')
+}

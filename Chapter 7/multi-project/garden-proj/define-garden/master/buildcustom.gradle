@@ -1,0 +1,26 @@
+allprojects {
+    task printInfo << {
+        println "This is ${project.name}"
+    }
+}
+
+subprojects {
+    // Add an extra action to the printInfo task.
+    printInfo << {
+        println "Can be planted"
+    }
+}
+
+project(':tree') {
+    // Add an extra action to the printInfo task.
+    printInfo << {
+        println "Has leaves"
+    }
+}
+
+project(':flower') {
+    // Add an extra action to the printInfo task.
+    printInfo << {
+        println "Smells nice"
+    }
+}

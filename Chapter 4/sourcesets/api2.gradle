@@ -1,0 +1,10 @@
+apply plugin: 'java'
+
+sourceSets {
+    api
+    main {
+        compileClasspath += files(api.output.classesDir)
+    }
+}
+
+classes.dependsOn apiClasses

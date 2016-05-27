@@ -1,0 +1,23 @@
+// Simple logging sample.
+task logLevels << {
+    logger.debug 'debug: Most verbose logging level'
+    logger.log LogLevel.DEBUG, 'debug: Most verbose logging level'
+
+    logger.info 'info: Use for information messages'
+    logger.log LogLevel.INFO, 'info: Use for information messages'
+
+    logger.lifecycle 'lifecycle: Progress information messages'
+    logger.log LogLevel.LIFECYCLE,
+            'lifecycle: Progress information messages'
+
+    logger.warn 'warn: Warning messages like invalid configuration'
+    logger.log LogLevel.WARN,
+            'warn: Warning messages like invalid configuration'
+
+    logger.quiet 'quiet: This is important but not an error'
+    logger.log LogLevel.QUIET,
+            'quiet: This is important but not an error'
+
+    logger.error 'error: Use for errors'
+    logger.log LogLevel.ERROR, 'error: Use for errors'
+}

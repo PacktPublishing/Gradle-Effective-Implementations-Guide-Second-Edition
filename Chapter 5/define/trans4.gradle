@@ -1,0 +1,13 @@
+apply plugin: 'java'
+
+repositories {
+    jcenter()
+}
+
+dependencies {
+    compile('org.slf4j:slf4j-simple:1.7.13')
+}
+
+// Make all dependencies for the compile
+// configuration transitive.
+configurations.compile.transitive = false

@@ -1,0 +1,18 @@
+apply plugin: 'java'
+apply plugin: 'checkstyle'
+
+repositories {
+    jcenter()
+}
+
+// Set checkstyle options, that are used by
+// all checkstyle tasks.
+checkstyle {
+    configFile = file('config/checkstyle/sun_checks.xml')
+}
+
+// Reconfigure the checkstyleTest task.
+checkstyleTest {
+    configFile = file('config/checkstyle/test.xml')
+    ignoreFailures = true
+}

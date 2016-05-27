@@ -1,0 +1,20 @@
+defaultTasks 'second'
+
+// Define name of the
+// task group we want to use.
+def taskGroup = 'base'
+
+task first(
+        description: 'Base task', 
+        group: taskGroup) << {
+    
+    println "I am first"
+}
+
+task second(
+        dependsOn: first, 
+        description: 'Secondary task', 
+        group: taskGroup) << {
+
+    println "I am second"
+}

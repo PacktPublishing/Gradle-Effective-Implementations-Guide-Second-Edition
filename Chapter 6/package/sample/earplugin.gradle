@@ -1,0 +1,26 @@
+apply plugin: 'ear'
+
+version = '1.0'
+
+repositories {
+    flatDir {
+        dirs 'lib'
+    }
+    jcenter()
+}
+
+dependencies {
+    // deploy configuration is added
+    // by the ear plugin. Dependencies
+    // are added to the EAR file
+    // in the root.
+    deploy 'sample:gradle-web:1.0'
+    
+    // earlib configuration is added
+    // by the ear plugin. Dependencies
+    // are added to the lib/ directory
+    // in the EAR file.
+    earlib 'org.slf4j:slfj4-impl:1.6.2'
+}
+
+ear.baseName = 'gradle-enterprise-app'

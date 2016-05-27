@@ -1,0 +1,11 @@
+task simpleCopy << {
+    // We use the project.copy()
+    // method in our task. We can
+    // leave out the project reference,
+    // because Gradle knows how to
+    // resolve it automatically.
+    copy {
+       from 'src/xml'
+       into 'definitions'
+    }
+}

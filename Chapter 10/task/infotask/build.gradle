@@ -1,0 +1,29 @@
+apply plugin: 'groovy'
+apply plugin: 'maven'
+
+version = '1.0'
+group = 'sample.infotask'
+
+// Set the name for the archive file
+// with the code. Is used for deploying
+// to Maven repository.
+archivesBaseName = 'infotask'
+
+dependencies {
+    // Define dependency on Gradle API classes.
+    compile gradleApi()
+
+    // Define dependency on the Groovy version
+    // that is part of the Gradle distribution.
+    compile localGroovy()
+}
+
+uploadArchives {
+    repositories {
+        mavenDeployer {
+            // For our example we deploy to a local
+            // directory lib.
+            repository(url: 'file:../lib')
+        }
+    }
+}

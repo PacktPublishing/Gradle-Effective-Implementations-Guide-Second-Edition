@@ -1,0 +1,16 @@
+apply plugin: 'java'
+apply plugin: 'pmd'
+
+repositories {
+    jcenter()
+}
+
+sourceSets {
+    util
+}
+
+pmd {
+    // Don't fail the build process when
+    // rule violations are found.
+    ignoreFailures = true
+}

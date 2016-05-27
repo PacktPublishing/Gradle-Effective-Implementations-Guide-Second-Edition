@@ -1,0 +1,15 @@
+task printInfo << {
+    println "This is ${project.name}"
+}
+
+project(':flower') {
+    task printInfo << {
+        println "This is ${project.name}"
+    }
+}
+
+project(':tree') {
+    task printInfo << {
+        println "This is ${project.name}"
+    }
+}

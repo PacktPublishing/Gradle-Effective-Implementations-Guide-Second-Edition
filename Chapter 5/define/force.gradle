@@ -1,0 +1,7 @@
+apply plugin: 'java'
+
+configurations.all {
+    resolutionStrategy {
+        force('org.springframework:spring-core:4.2.3.RELEASE')
+    }
+}

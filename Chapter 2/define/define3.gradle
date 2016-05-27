@@ -1,0 +1,8 @@
+task second {
+    doLast { Task task ->
+        // Using explicit name 'task' as closure parameter.
+        // We also defined the type of the parameter.
+        // This can help the IDE to add code completion.
+        println "Running ${task.name}"
+    }
+}

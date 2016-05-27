@@ -1,0 +1,1 @@
+def dir = project.file(new File('config'), PathValidation.DIRECTORY)

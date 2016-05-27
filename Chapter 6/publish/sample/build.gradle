@@ -1,0 +1,4 @@
+apply plugin: 'java'
+
+archivesBaseName = 'gradle-sample'
+version = '1.0'

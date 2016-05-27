@@ -1,0 +1,4 @@
+task simpleCopy(type: Copy) {
+    from 'src/xml'
+    into 'definitions'
+}

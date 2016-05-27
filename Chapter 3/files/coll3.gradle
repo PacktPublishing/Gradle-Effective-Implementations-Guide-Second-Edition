@@ -1,0 +1,12 @@
+// Use a Collection with file or directory names.
+def listOfFileNames = ['src', 'test']
+def mainDirectories = files(listOfFileNames)
+
+// Use an array.
+mainDirectories = files(listOfFileNames as String[])
+
+// Or an implementation of the Iterable interface.
+mainDirectories = files(listOfFileNames as Iterable)
+
+// Combine arguments and pass another file collection.
+def allDirectories = files(['config'], mainDirectories)

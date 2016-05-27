@@ -1,0 +1,11 @@
+apply plugin: 'groovy'
+
+// Dependency configuration for developing
+// Gradle plugins and tasks with Groovy.
+dependencies {
+    // Gradle API available for compile task.
+    compile gradleApi()
+
+    // Groovy libraries used by Gradle version.
+    groovy localGroovy()
+}

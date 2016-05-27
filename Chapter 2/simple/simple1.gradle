@@ -1,0 +1,9 @@
+// Assign value to description property.
+project.description = 'Simple project'
+
+// DSL to create a new task using
+// Groovy << operator.
+task simple << {
+    println 'Running simple task for project ' + 
+            project.description
+}

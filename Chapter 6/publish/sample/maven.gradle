@@ -1,0 +1,14 @@
+apply plugin: 'java'
+apply plugin: 'maven'
+
+archivesBaseName = 'gradle-sample'
+group = 'gradle.sample'
+version = '1.0'
+
+uploadArchives {
+    repositories {
+        mavenDeployer {
+            repository(url: 'file:./maven')
+        }
+    }
+}

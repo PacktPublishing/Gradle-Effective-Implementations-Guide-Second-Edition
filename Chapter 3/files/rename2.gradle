@@ -1,0 +1,12 @@
+task copyAndRenameRegEx(type: Copy) {
+    from 'src'
+
+    // Change extension .txt to .text.
+    rename '(.*).txt', '$1.text'
+
+    // Rename files that start with sample-
+    // and remove the sample- part.
+    rename ~/^sample-(.*)/, '$1'
+
+    into 'dist'
+}

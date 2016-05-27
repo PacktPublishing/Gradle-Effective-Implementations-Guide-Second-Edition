@@ -1,0 +1,22 @@
+// Define closure with the task action.
+def printTaskName = { task ->
+    println "Running ${task.name}"
+}
+
+// Create first task.
+task first << printTaskName
+
+// Use doFirst method with closure
+// that throws exception when task
+// is executed during work hours.
+first.doFirst {
+    def today = Calendar.instance
+    def workingHours = today[Calendar.HOUR_OF_DAY] in 8..17
+    
+    if (workingHours) {
+        throw new StopExecutionException()
+    }
+}
+
+// Create second task that depends on first task.
+task second(dependsOn: 'first') << printTaskName

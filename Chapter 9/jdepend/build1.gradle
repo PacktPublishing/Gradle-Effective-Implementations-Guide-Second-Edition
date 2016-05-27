@@ -1,0 +1,19 @@
+apply plugin: 'java'
+apply plugin: 'jdepend'
+
+repositories {
+    // Repository is need to the JDepend dependencies
+    // can be downloaded.
+    jcenter()
+}
+
+// We can change the version of JDepend to be used.
+jdepend{
+    // Default version with Gradle 2.10 is JDepend 2.9.1
+    toolVersion = '2.9.1'
+}
+
+// Custom source set so jdependRestApi task is created.
+sourceSets {
+    restApi
+}

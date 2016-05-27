@@ -1,0 +1,19 @@
+apply plugin: 'scala'
+
+repositories {
+    jcenter()
+}
+
+dependencies {
+    compile "org.scala-lang:scala-library:2.11.4"
+}
+
+// New task to show properties on the
+// main source set added by the Scala plugin.
+task scalaSourceSetsProperties << {
+    sourceSets.main.with { sourceSet ->
+        println "scala.srcDirs = ${sourceSet.scala.srcDirs}"
+        println "scala.files = ${sourceSet.scala.files.name}"
+        println "allScala.files = ${sourceSet.allScala.files.name}"
+    }
+}

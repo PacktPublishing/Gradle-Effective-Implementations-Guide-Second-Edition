@@ -1,0 +1,17 @@
+apply plugin: 'java'
+
+repositories {
+    jcenter()
+}
+
+dependencies {
+    testCompile('org.testng:testng:6.5.1')
+}
+
+test {
+    useTestNG { options ->
+        options.excludeGroups = ['functional'] as Set
+        options.parallel = 'method'
+        options.threadCount = 4
+    } 
+}

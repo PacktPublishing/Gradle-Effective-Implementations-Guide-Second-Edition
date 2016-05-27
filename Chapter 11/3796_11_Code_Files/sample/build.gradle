@@ -1,0 +1,40 @@
+// We create a Java project so we need the Java plugin
+apply plugin: 'java'
+
+// Set base name for archives.
+archivesBaseName = 'gradle-sample'
+
+// Version of the project.
+version = '1.1'
+
+// Definine JCenter as repository for downloading
+// dependencies.
+repositories {
+    jcenter()
+}
+
+// We have a single dependency on JUnit
+// for the testCompile configuration
+dependencies {
+    testCompile 'junit:junit:4.11'
+}
+
+// Extra task to create a JAR file with the sources.
+task sourcesJar(type: Jar) {
+    classifier = 'sources'
+    from sourceSets.main.allSource
+}
+
+// Extra task to create a JAR file with Javadoc
+// generated documentation.
+task docJar(type: Jar, dependsOn: javadoc) {
+    classifier = 'docs'
+    from javadoc.destinationDir
+}
+
+// Add extra JAR file to the list of artifacts
+// for this project.
+artifacts {
+    archives sourcesJar
+    archives docJar
+}

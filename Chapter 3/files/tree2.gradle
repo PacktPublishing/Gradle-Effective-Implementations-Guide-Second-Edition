@@ -1,0 +1,22 @@
+def sources = fileTree {
+    from 'src'
+}
+
+def javaFiles = sources.matching {
+    include '**/*.java'
+}
+
+def nonJavaFiles = sources.matching {
+    exclude '**/*.java'
+}
+
+def nonLanguageFiles = sources.matching {
+    exclude '**/*.scala', '**/*.groovy', '**/*.java'
+}
+
+def modifiedLastWeek = sources.matching {
+    lastWeek = new Date() - 7
+    include { file ->
+        file.lastModified > lastWeek.time
+    }
+}

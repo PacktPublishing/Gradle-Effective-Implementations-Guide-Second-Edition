@@ -1,0 +1,22 @@
+def testFiles = fileTree(dir: 'src/test')
+
+testFiles.visit { fileDetails ->
+    if (fileDetails.directory) {
+        println "Entering directory ${fileDetails.relativePath}"
+    } else {
+        println "File name: ${fileDetails.name}"
+    }
+}
+
+
+def projectFiles = fileTree(dir: 'src/test')
+
+projectFiles.visit(new FileVisitor() {
+    void visitDir(FileVisitDetails details) {
+        println "Directory: ${details.path}"
+    }
+
+    void visitFile(FileVisitDetails details) {
+        println "File: ${details.path}, size: ${details.size}"
+    }
+})

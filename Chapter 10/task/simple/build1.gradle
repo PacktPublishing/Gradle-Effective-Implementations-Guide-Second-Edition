@@ -1,0 +1,3 @@
+task info(description: 'Show Gradle version') << {
+    println "Current Gradle version: $project.gradle.gradleVersion"
+}

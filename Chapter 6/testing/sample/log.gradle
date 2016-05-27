@@ -1,0 +1,42 @@
+apply plugin: 'java'
+
+repositories {
+    jcenter()
+}
+
+dependencies {
+    testCompile('junit:junit:4.12')
+}
+
+test {
+    // Set exception format to full
+    // instead of default value 'short'.
+    testLogging.exceptionFormat 'full'
+
+    // We can also a script block to configure
+    // the testLogging property.
+    testLogging {
+
+        // No log level specified so the
+        // property is set on LIFECYCLE log level.
+        // We can pass arguments to determine
+        // which test events we want to see in the
+        // command-line output.
+        events 'passed'
+
+        // Show logging events for test methods.
+        minGranularity = 3
+
+        // All valid values for the stackTrace output.
+        stackTraceFilters 'groovy', 'entry_point', 'truncate'
+
+        // Show System.out and System.err output
+        // from the tests.
+        showStandardStreams = true
+
+        // Configure options for DEBUG log level.
+        debug {
+            events 'started'
+        }
+    }
+}

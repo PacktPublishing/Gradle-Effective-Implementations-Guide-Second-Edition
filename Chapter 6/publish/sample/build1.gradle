@@ -1,0 +1,25 @@
+apply plugin: 'java'
+
+archivesBaseName = 'gradle-sample'
+version = '1.0'
+
+repositories {
+    flatDir {
+        name 'uploadRepository'
+        dirs 'upload'
+    }
+}
+
+uploadArchives {
+    repositories {
+        // Use repository defined in project
+        // for uploading the JAR file.
+        add project.repositories.uploadRepository
+
+        // Extra upload repository defined in
+        // the upload task.
+        flatDir {
+            dirs 'libs' 
+        }
+    } 
+}

@@ -1,0 +1,12 @@
+apply plugin: 'java'
+
+repositories {
+    jcenter()
+}
+
+dependencies {
+    // Configure transitive property with closure.
+    compile('org.slf4j:slf4j-simple:1.7.13') {
+        exclude 'org.slf4j:slf4j-api'
+    }
+}

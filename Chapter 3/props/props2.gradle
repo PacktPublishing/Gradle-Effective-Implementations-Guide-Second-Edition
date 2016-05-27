@@ -1,0 +1,20 @@
+// Define new property.
+ext.customProperty = 'custom'
+
+// Or we can use ext{} script block.
+ext {
+   anotherCustomProperty = 'custom'
+}
+
+task showProperties {
+    ext {
+        customProperty = 'override'
+    }
+    doLast {
+        // We can refer to the property
+        // in different ways:
+        println customProperty
+        println project.ext.customProperty
+        println project.customProperty
+    }
+}

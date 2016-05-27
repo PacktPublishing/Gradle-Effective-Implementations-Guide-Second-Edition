@@ -1,0 +1,21 @@
+// Create a simple task.
+task simple << { task ->
+    println "Running ${task.name}"
+}
+
+// The simple task is available as 
+// project property.
+simple.description = 'Print task name'
+
+// We can invoke methods from the
+// Task object.
+simple.doLast {
+    println "Done"
+}
+
+// We can also reference the task
+// via the project property
+// explicitly.
+project.simple.doFirst {
+    println "Start"
+}

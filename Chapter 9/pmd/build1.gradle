@@ -1,0 +1,14 @@
+apply plugin: 'java'
+apply plugin: 'pmd'
+
+repositories {
+    // We need a repository, so the
+    // PMD dependencies can be downloaded.
+    jcenter()
+}
+
+sourceSets {
+    // New source set with
+    // the name util.
+    util
+}

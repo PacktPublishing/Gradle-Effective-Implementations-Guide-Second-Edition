@@ -1,0 +1,5 @@
+subprojects {
+    task printInfo << {
+        println "This is ${project.name}"
+    }
+}

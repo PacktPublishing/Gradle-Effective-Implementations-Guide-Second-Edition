@@ -1,0 +1,13 @@
+apply plugin: 'java'
+apply plugin: 'checkstyle'
+
+repositories {
+    jcenter()
+}
+
+// Configuration for Checkstyle.
+checkstyle {
+    // Define key-value pairs to replace properties
+    // in the configuration file.
+    configProperties = [tabWidth: 10]
+}

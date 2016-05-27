@@ -1,0 +1,21 @@
+apply plugin: 'java'
+
+repositories {
+    jcenter()
+}
+
+dependencies {
+    runtime "org.springframework:spring-aop:4.2.3.RELEASE"
+}
+
+task dependencyInfo << {
+    println "-- Runtime dependencies --"
+    configurations.runtime.dependencies.each {
+        println "${it.group}:${it.name}:${it.version}"
+    }
+
+    println "-- Runtime allDependencies --"
+    configurations.runtime.allDependencies.each {
+        println "${it.group}:${it.name}:${it.version}"
+    }
+}

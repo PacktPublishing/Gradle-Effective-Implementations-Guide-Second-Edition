@@ -1,0 +1,17 @@
+apply plugin: 'java'
+
+repositories {
+    jcenter()
+}
+
+dependencies {
+    // Use attributes for the group, name and
+    // version for the external module dependency.
+    compile(group: 'org.springframework',
+            name: 'spring-core',
+            version: '4.2.3.RELEASE')
+
+    // Use String notation with group, name and
+    // version in a single String.
+    runtime('org.springframework:spring-aop:4.2.3.RELEASE'
+}

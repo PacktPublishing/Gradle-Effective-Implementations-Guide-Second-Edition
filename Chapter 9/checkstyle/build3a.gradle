@@ -1,0 +1,11 @@
+apply plugin: 'java'
+apply plugin: 'checkstyle'
+
+repositories {
+    jcenter()
+}
+
+checkstyle {
+    // Use version 5.7 of Checkstyle.
+    toolVersion = '5.7'
+}

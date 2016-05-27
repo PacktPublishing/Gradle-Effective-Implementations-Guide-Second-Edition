@@ -1,0 +1,10 @@
+task first << { task ->
+    println "Run ${task.name}"
+}
+
+task second << { task ->
+    println "Run ${task.name}"
+}
+
+// Define dependency of task second on task first
+second.dependsOn 'first'

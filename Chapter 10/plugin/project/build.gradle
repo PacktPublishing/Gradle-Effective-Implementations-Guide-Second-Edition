@@ -1,0 +1,7 @@
+// Apply InfoPlugin from buildSrc directory.
+apply plugin: sample.InfoPlugin
+
+// Configure InfoPlugin via InfoPluginExtension.
+info {
+    prefix = 'Gradle version'
+}

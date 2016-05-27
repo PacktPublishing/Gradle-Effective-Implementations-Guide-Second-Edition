@@ -1,0 +1,9 @@
+def printTaskName = { task ->
+    println "Run ${task.name}"
+}
+
+task first << printTaskName
+
+// Here we use first (not the string value 'first')
+// as a value for dependsOn.
+task second(dependsOn: first) << printTaskName

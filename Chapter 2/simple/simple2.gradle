@@ -1,0 +1,11 @@
+// Use setDescription method
+// to assign value instead of
+// Groovy assignment.
+project.setDescription('Simple project')
+
+// Use create method to add new
+// task instead of Groovy << operator.
+project.getTasks().create('simple') {
+    println 'Running simple task for project ' + 
+            project.description
+}

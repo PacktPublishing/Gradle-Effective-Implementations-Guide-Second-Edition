@@ -1,0 +1,12 @@
+def printTaskName = { task ->
+    println "Running ${task.name}"
+}
+
+// Use tasks project variable to get access
+// to the TaskContainer object. 
+// Then we use the create method of
+// TaskContainer to create a new task.
+project.tasks.create(name: 'first') << printTaskName
+
+// Let Gradle resolve tasks to project variable.
+tasks.create(name: 'second', dependsOn: 'first') << printTaskName

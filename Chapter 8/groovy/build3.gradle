@@ -1,0 +1,25 @@
+apply plugin: 'groovy'
+
+// Set version for project, we use
+// it in the configuration for groovydoc.
+version = 1.0
+
+repositories {
+    jcenter()
+}
+
+dependencies {
+    compile 'org.codehaus.groovy:groovy:2.4.5'
+}
+
+// Configure groovydoc task.
+groovydoc {
+    header = 'GroovyDoc for sample project'
+    footer = "Generated documentation - $version"
+    docTitle = 'GroovyDoc Title'
+    windowTitle = docTitle
+    use = true // Create class and package usage pages
+
+    // Exclude files, use include to include files
+    exclude '**/*Doc.groovy'
+}

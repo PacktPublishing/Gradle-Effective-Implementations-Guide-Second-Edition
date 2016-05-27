@@ -1,0 +1,9 @@
+defaultTasks 'second'
+
+task first << {
+    println "I am first"
+}
+
+task second(dependsOn: first) << {
+    println "I am second"
+}

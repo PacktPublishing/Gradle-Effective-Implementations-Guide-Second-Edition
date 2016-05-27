@@ -1,0 +1,69 @@
+apply plugin: 'java'
+apply plugin: 'idea'
+
+version = 1.0
+
+description = 'Sample project'
+
+repositories {
+    jcenter()
+}
+
+dependencies {
+    testCompile 'junit:junit:4.11'
+}
+
+idea {
+    project {
+        ipr {
+            // Using XML hooks.
+            withXml { xml ->
+                def projectRoot = xml.asNode()
+                projectRoot.component.find {
+                    it.@name == 'ProjectRootManager'
+                }.@'assert-keyword' = true
+
+                def javadoc = projectRoot.component.find {
+                    it.@name == 'JavadocGenerationManager'
+                }
+                javadoc.option.find {
+                    it.@name == 'OPEN_IN_BROWSER'
+                }.@value = false
+            }
+        }
+    }
+
+    module {
+        iml {
+            withXml { xml ->
+                def moduleRoot = xml.asNode()
+                def facetManager = moduleRoot.component.find {
+                    it.@name == 'FacetManager'
+                }
+                facetManager.plus {
+                    facet(type: 'Spring', name: 'Spring') {
+                        configuration {
+                            fileset(id: 'fileset1', name: 'XML Application Context') {
+                                file 'file://$MODULE_DIR$/src/main/resources/applicationContext.xml'
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+
+    workspace {
+        iws {
+            withXml { xml ->
+                def workspaceRoot = xml.asNode()
+                def coverageViewManager = workspaceRoot.component.find {
+                    it.@name == 'CoverageViewManager'
+                }
+                coverageViewManager.option.find {
+                    it.@name == 'myFlattenPackages'
+                }.@value = 'false'
+            }
+        }
+    }
+}

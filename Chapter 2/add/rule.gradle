@@ -1,0 +1,31 @@
+task first(description: 'First task')
+
+task second(description: 'Second task')
+
+tasks.addRule(
+        "Pattern: desc<TaskName>: " + 
+        "show description of a task.") { taskName ->
+    
+    if (taskName.startsWith('desc')) {
+        // Remove 'desc' from the task name.
+        def targetTaskName = taskName - 'desc'
+
+        // Uncapitalize the task name.
+        def targetTaskNameUncapitalize = 
+            targetTaskName[0].toLowerCase() + 
+            targetTaskName[1..-1]
+
+        // Find the task in the project we search
+        // the description for.
+        def targetTask = 
+            project.tasks.findByName(
+                targetTaskNameUncapitalize)
+
+        if (targetTask) {
+            task(taskName) << {
+                println "Description of task ${targetTask.name} " +
+                    " -> ${targetTask.description}"
+            }
+        }
+    }
+}

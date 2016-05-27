@@ -1,0 +1,16 @@
+// Import ANT filter classes for our
+// Gradle build script.
+import org.apache.tools.ant.filters.*
+
+task filterFiles(type: Copy) {
+    from 'src/filter.txt'
+    into 'dist'
+
+    // Closure to replace each line.
+    filter { line ->
+        "I say: $line"
+    }
+
+    // Use ANT filter ReplaceTokens.
+    filter(ReplaceTokens, tokens: [message: 'Hello'])
+}

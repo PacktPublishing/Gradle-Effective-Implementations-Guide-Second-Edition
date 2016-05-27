@@ -1,0 +1,38 @@
+apply plugin: 'java'
+apply plugin: 'war'
+apply plugin: 'eclipse-wtp'
+
+version = 1.0
+
+description = 'Sample project'
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+    testCompile 'junit:junit:4.11'
+}
+
+eclipse {
+    wtp {
+        component {
+            file {
+                withXml { componentXml ->
+                    def root = componentXml.asNode()
+                    root.'wb-module'.@'deploy-name' = 'sample'
+                }
+            }
+        }
+
+        facet {
+            file {
+                withXml { facetXml ->
+                    def root = facetXml.asNode()
+                    root.installed
+                        .find { it.@facet == 'jst.web' }.@version = '3.0'
+                }
+            }
+        }
+    }
+}

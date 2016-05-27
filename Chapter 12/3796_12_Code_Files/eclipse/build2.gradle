@@ -1,0 +1,99 @@
+apply plugin: 'java'
+apply plugin: 'eclipse'
+
+version = 1.0
+
+description = 'Sample project'
+
+ext {
+    slf4jVersion = '1.7.18'
+    slf4jGroup = 'org.slf4j'
+}
+
+configurations {
+    extraLib
+}
+
+repositories {
+    jcenter()
+}
+
+dependencies {
+    testCompile 'junit:junit:4.11'
+
+    extraLib "$slf4jGroup:slf4j-api:$slf4jVersion", "$slf4jGroup:slf4j-simple:$slf4jVersion"
+}
+
+eclipse {
+    // Customize .project file.
+    project {
+        file {
+            beforeMerged { project ->
+                // We can access the internal object structure
+                // using merge hooks.
+                project.natures.clear()
+            }
+
+            // Instead of using the DSL we use the afterMerged
+            // hook to customize the .project and .classpath files.
+            afterMerged { project ->
+                // Set name.
+                project.name = 'sample-eclipse'
+
+                // Set comment for .project file.
+                project.comment = 'Eclipse project file build by Gradle'
+
+                // Add another nature to the .project file.
+                project.natures.add 'org.springframework.ide.eclipse.core.springnature'
+
+                // Custom builder.
+                buildCommand.add 'org.springframework.ide.eclipse.core.springbuilder'
+
+                // If setting config attribute
+                // then type 1 is file, 2 is folder
+                linkedResources.add name: 'config',
+                                    type: '2',
+                                    location: 'file:/opt/local'
+
+                // Reference other project.
+                referencedProjects.add 'other-project'
+            }
+
+        }
+    }
+
+    // Customize .classpath file.
+    classpath {
+        file {
+            beforeMerged { classpath ->
+                // Remove lib classpath entries.
+                classpath.entries.removeAll {
+                    it.kind == 'lib'
+                }
+            }
+
+            whenMerged { classpath ->
+                // Change default output dir (${projectDir}/bin)
+                classpath.entries.add kind: 'output', path: "$buildDir/eclipse-classes"
+            }
+        }
+    }
+
+    // Customize org.eclipse.jdt.core.prefs file.
+    jdt {
+        file {
+            beforeMerged { jdt ->
+                // Do nothing.
+            }
+
+            whenMerged { jdt ->
+                jdt.sourceCompatibility = 1.8
+                jdt.targetCompatibility = 1.8
+            }
+
+            whenProperties { properties ->
+                properties.extraProperty = 'value'
+            }
+        }
+    }
+}

@@ -1,0 +1,28 @@
+apply plugin: 'java'
+
+version = '1.0'
+
+// Custom archive task with
+// specific properties for a WAR archive.
+task war(type: War) {
+    dependsOn classes
+    
+    from 'src/main/webapp'
+    
+    // Files copied to WEB-INF.
+    webInf {
+        from 'src/main/webInf'
+    }
+    
+    // Copied to WEB-INF/classes.
+    classpath sourceSets.main.runtimeClasspath
+    
+    // Copied to WEB-INF/lib.
+    classpath fileTree('libs')
+    
+    // Custom web.xml.
+    webXml = file('src/main/webXml/web-dev.xml')
+    baseName = 'gradle-webapp'
+}
+
+assemble.dependsOn war

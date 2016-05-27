@@ -1,0 +1,19 @@
+apply plugin: 'java'
+
+repositories {
+    jcenter()
+}
+
+dependencies {
+    testCompile('junit:junit:4.12')
+}
+
+task testReport(type: TestReport) {
+    destinationDir = file("$buildDir/test-reports")
+    testResultDirs = files("$buildDir/test-results")
+    reportOn(test)
+}
+
+// If the test task is finished,
+// we want the testReport to be executed.
+test.finalizedBy(testReport)

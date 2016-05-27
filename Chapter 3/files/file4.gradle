@@ -1,0 +1,5 @@
+// Check file or directory exists.
+def readme = project.file('README', PathValidation.EXISTS)
+
+// Check File object is really a file.
+def license = project.file('License.txt', PathValidation.FILE)

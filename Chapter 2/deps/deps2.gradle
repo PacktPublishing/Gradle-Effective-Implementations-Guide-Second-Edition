@@ -1,0 +1,16 @@
+task first << { task ->
+    println "Run ${task.name}"
+}
+
+task second << { task ->
+    println "Run ${task.name}"
+}
+
+// Use property syntax to define dependency.
+// dependsOn expects a collection object.
+second.dependsOn = ['first']
+
+// Define dependsOn when we create the task.
+task third(dependsOn: 'second') << { task ->
+    println "Run ${task.name}"
+}

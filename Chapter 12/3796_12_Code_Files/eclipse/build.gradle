@@ -1,0 +1,32 @@
+apply plugin: 'java'
+
+// Apply the Eclipse plugin.
+apply plugin: 'eclipse'
+
+version = 1.0
+
+sourceCompatibility = 1.8
+targetCompatibility = 1.8
+
+description = 'Sample project'
+
+ext {
+    slf4jVersion = '1.7.18'
+    slf4jGroup = 'org.slf4j'
+}
+
+configurations {
+	// Extra configuration.
+    extraLib
+}
+
+repositories {
+    jcenter()
+}
+
+dependencies {
+    testCompile 'junit:junit:4.11'
+
+    extraLib "$slf4jGroup:slf4j-api:$slf4jVersion",
+	         "$slf4jGroup:slf4j-simple:$slf4jVersion"
+}

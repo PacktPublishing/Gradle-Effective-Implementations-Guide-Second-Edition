@@ -1,0 +1,13 @@
+// We assign the task closure
+// to a variable. We can reuse
+// the variable name in our task definitions.
+def printTaskName = { task ->
+    println "Run ${task.name}"
+}
+
+// We use the variable with the closure.
+task third(dependsOn: 'second') << printTaskName
+
+task second(dependsOn: 'first') << printTaskName
+
+task first << printTaskName

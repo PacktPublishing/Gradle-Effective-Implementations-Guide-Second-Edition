@@ -1,0 +1,15 @@
+/**
+ * Plugin class that adds a new task to the project.
+ */
+class InfoPlugin implements Plugin<Project> {
+
+    void apply(Project project) {
+        // Add new info task to the project.
+        project.tasks.create('info') << {
+            println "Running Gradle: $project.gradle.gradleVersion"
+        }
+    }
+
+}
+
+apply plugin: InfoPlugin

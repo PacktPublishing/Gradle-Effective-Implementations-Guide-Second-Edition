@@ -1,0 +1,115 @@
+apply plugin: 'java'
+apply plugin: 'idea'
+
+version = 1.0
+
+sourceCompatibility = 1.8
+targetCompatibility = 1.8
+
+description = 'Sample project'
+
+ext {
+    slf4jVersion = '1.7.18'
+    slf4jGroup = 'org.slf4j'
+}
+
+configurations {
+    extraLib
+}
+
+repositories {
+    jcenter()
+}
+
+dependencies {
+    testCompile 'junit:junit:4.11'
+    extraLib "$slf4jGroup:slf4j-api:$slf4jVersion",
+	         "$slf4jGroup:slf4j-simple:$slf4jVersion"
+}
+
+sourceSets {
+	// Extra source set we want to add
+	// to the IDEA configuration.
+    api
+}
+
+idea {
+	// Customize IDEA project file generation.
+    project {
+        // Set JDK name. Default is from Java version
+        // used to run Gradle.
+        jdkName = '1.8'
+
+        // Set Java language level for the project.
+        // Default value is project.sourceCompatibility.
+        languageLevel = '1.8'  // Or JDK_1_6
+
+        // For multi-project builds we can define other modules.
+        // Default value is project.allprojects*.idea.module.
+        modules = project(':other').idea.module
+
+        // Set resource wildcard pattern.
+        // Default value is ['!?*.java', '!?*.groovy']
+        wildcards += '!?*.xsd'
+    }
+
+	// Customize IDEA module file generation.
+    module {
+        // Content root of the module.
+        // Default value is project.projectDir.
+        contentRoot = project.projectDir
+
+        // Download associated Javadoc files for dependencies.
+        // Default value is false.
+        downloadJavadoc = true
+
+        // Download associated source files for dependencies.
+        // Default value is true.
+        downloadSources = true
+
+        // Set which directories to exclude.
+        // Default value is [project.buildDir, project.file('.gradle')]
+        excludeDirs += file('.settings')
+
+        // Set the directory for the compiled class files.
+        // If not set the default IDEA directory will be used.
+        // Default value is null.
+        outputDir = file("$buildDir/idea-classes")
+
+        // Set the directory for the compile test class files.
+        // If not set the default IDEA directory will be used.
+        // Default value is null.
+        testOutputDir = file("$buildDir/idea-test-classes")
+
+        // If set to true the output directories are placed below
+        // the output directory of the project. Otherwise the values
+        // for outputDir and testOutputDir are used.
+        // Default value is null.
+        inheritOutputDirs = true
+
+        // Set specific JDK for this module, or use the value 'inherited'
+        // to use project JDK. Default value is 'inherited'.
+        jdkName = 'inherited'
+
+        // Set the name of the module file with extension .iml.
+        // Default value is project.name or prefixed with project.path if
+        // necessary to guarantee uniqueness.
+        name = project.name
+
+        // Change name of the module project file.
+        // Default value is value of name and extension .iml.
+        outputFile = file('sample.iml')
+
+        // Directory with the source files.
+        // Default value is project.sourceSets.main.allSource
+        sourceDirs += project.sourceSets.api.allSource
+
+        // Directory with the test source files.
+        // Default value is project.sourceSets.test.allSource
+        testSourceDirs += project.sourceSets.api.allSource
+
+        // Set configurations for the IntelliJ IDEA scopes.
+        scopes.COMPILE.plus += configurations.extraLib
+        scopes.TEST.minus += configurations.extraLib
+    }
+}

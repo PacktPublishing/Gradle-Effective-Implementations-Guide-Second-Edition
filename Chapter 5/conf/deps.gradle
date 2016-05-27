@@ -1,0 +1,18 @@
+configurations {
+    commonsLib {
+        description = 'Common libraries'
+    }
+    mainLib {
+        extendsFrom commonsLib
+        description = 'Main libraries'
+    }
+}
+
+// Reference mainLib configuration
+// using [] syntax for the
+// configuration container.
+println configurations['mainLib'].name
+
+// Reference commonsLib in another way,
+// just use the name directly as property.
+println configurations.commonsLib.name

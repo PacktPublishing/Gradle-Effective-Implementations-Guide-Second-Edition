@@ -1,0 +1,17 @@
+task printInfo << {
+    println "This is ${project.name}"
+}
+
+project(':flower') {
+    // Add an extra action to the printInfo task.
+    task printInfo << {
+        println "This is ${project.name}"
+    }
+}
+
+project(':tree') {
+    // Add an extra action to the printInfo task.
+    task printInfo << {
+        println "This is ${project.name}"
+    }
+}

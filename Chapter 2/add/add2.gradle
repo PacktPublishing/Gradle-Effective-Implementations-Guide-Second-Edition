@@ -1,0 +1,8 @@
+// Define name of task
+// as a variable.
+def simpleTask = 'simple'
+
+// Variable is used for the task name.
+task(simpleTask) << { task ->
+    println "Running ${task.name}"
+}

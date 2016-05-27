@@ -1,0 +1,5 @@
+task showConvention << {
+    println sourceSets.main.name
+    println project.sourceSets.main.name
+    println project.convention.plugins.java.sourceSets.main.name
+}

@@ -1,0 +1,24 @@
+class Simple {
+
+    // Create new logger using the Gradle
+    // logging support.
+    private static final Logger logger = Logging.getLogger('Simple')
+
+    int square(int value) {
+        int square = value * value
+        logger.lifecycle "Calculate square for ${value} = ${square}"
+        return square
+    }
+
+}
+
+logger.lifecycle 'Running sample Gradle build.'
+
+task useSimple {
+    doFirst {
+        logger.lifecycle 'Running useSimple'
+    }
+    doLast {
+        new Simple().square(3)
+    }
+}

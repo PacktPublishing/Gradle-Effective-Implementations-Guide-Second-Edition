@@ -1,0 +1,13 @@
+defaultTasks 'first', 'second'
+
+task first {
+    doLast {
+        println "I am first"
+    }
+}
+
+task second {
+    doFirst {
+        println "I am second"
+    }
+}

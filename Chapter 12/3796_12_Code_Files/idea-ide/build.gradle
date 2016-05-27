@@ -1,0 +1,18 @@
+apply plugin: 'java'
+
+version = '1.0'
+group = 'sample.gradle'
+
+description = 'Sample Java project'
+
+repositories {
+    jcenter()
+}
+
+dependencies {
+    testCompile 'junit:junit:4.11'
+    compile 'org.slf4j:slf4j-api:1.7.11'
+
+    compile 'junit:junit:4.12'
+}
+

@@ -1,0 +1,25 @@
+apply plugin: 'java'
+
+task runJava(dependsOn: classes, 
+             description: 'Run gradle.sample.SampleApp') << {
+
+    javaexec {
+        // Java main class to execute.
+        main = 'gradle.sample.SampleApp'
+        
+        // We need to set the classpath.
+        classpath sourceSets.main.runtimeClasspath
+        
+        // Extra options can be set.
+        maxHeapSize = '128m'
+        systemProperty 'sysProp', 'notUsed'
+        jvmArgs '-client'
+    }
+
+}
+
+
+
+repositories {
+    jcenter()
+}

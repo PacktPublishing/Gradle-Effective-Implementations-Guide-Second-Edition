@@ -1,0 +1,9 @@
+task first {
+    doFirst(
+        new Action() {
+            void execute(Task task) {
+                println "Running ${task.name}"
+            }
+        }
+    )
+}

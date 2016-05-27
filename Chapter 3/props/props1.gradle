@@ -1,0 +1,15 @@
+version = '1.0'
+group = 'Sample'
+description = 'Sample build file to show project properties'
+
+task defaultProperties << {
+    println "Project: $project"
+    println "Name: $name"
+    println "Path: $path"
+    println "Project directory: $projectDir"
+    println "Build directory: $buildDir"
+    println "Version: $version"
+    println "Group: $project.group"
+    println "Description: $project.description"
+    println "AntBuilder: $ant"
+}

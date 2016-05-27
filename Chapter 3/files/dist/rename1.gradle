@@ -1,0 +1,15 @@
+task copyAndRename(type: Copy) {
+    from 'src'
+
+    rename { fileName ->
+        if (fileName.endsWith('txt')) {
+            def original = fileName
+            def originalWithoutExtension =
+                original - '.txt'
+
+            return originalWithoutExtension + '.text'
+        }
+    }
+
+    into 'dist'
+}

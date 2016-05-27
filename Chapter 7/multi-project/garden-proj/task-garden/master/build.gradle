@@ -1,0 +1,9 @@
+allprojects {
+    task printInfo << {
+        println "This is ${project.name}"
+    }
+}
+
+project(':flower') {
+    printInfo.dependsOn(':tree:printInfo')
+}

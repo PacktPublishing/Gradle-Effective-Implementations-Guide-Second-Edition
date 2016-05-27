@@ -1,0 +1,16 @@
+// Create a new File object.
+def file = new File('data.sample')
+
+task handleFile {
+    // Use Spec implementation to write
+    // a conditon for the onlyIf method.
+    onlyIf(new Spec() {
+        boolean isSatisfiedBy(task) {
+            file.exists()
+        }
+    })
+
+    doLast {
+        println "Work with file ${file.name}"
+    }
+}

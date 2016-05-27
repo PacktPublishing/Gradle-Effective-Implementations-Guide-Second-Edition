@@ -1,0 +1,14 @@
+apply plugin: 'java'
+apply plugin: 'signing'
+
+archivesBaseName = 'gradle-sample'
+version = '1.0-DEV'
+
+signing {
+    required {
+        !version.endsWith('DEV') &&
+                gradle.taskGraph.hasTask('uploadArchives')
+    }
+        
+    sign configurations.archives
+}

@@ -1,0 +1,12 @@
+task expandFiles(type: Copy) {
+   from 'src/expand.txt'
+   into 'dist'
+
+   // Set property languages and Groovy's
+   // template engine is used to replace
+   // the property with the given value.
+   expand languages: ['Java', 'Groovy', 'Scala']
+
+   // Rename copied file.
+   rename 'expand.txt', 'expanded.txt'
+}

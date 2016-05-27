@@ -1,0 +1,12 @@
+apply plugin: 'groovy'
+
+repositories {
+    jcenter()
+}
+
+dependencies {
+    // Define dependency for Groovy libraries.
+    compile group: 'org.codehaus.groovy',
+            name: 'groovy',
+            version: '2.4.5'
+}

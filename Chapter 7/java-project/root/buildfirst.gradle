@@ -1,0 +1,28 @@
+subprojects {
+    apply plugin: 'java'
+
+    repositories {
+        mavenCentral()
+    }
+
+    dependencies {
+        testCompile 'junit:junit:4.8.2'
+    }
+}
+
+project(':services:sample') {
+    dependencies {
+        // Dependency on the common project classes.
+        compile project(':common')
+    }
+}
+
+project(':web') {
+    apply plugin: 'war'
+
+    dependencies {
+        // Dependency on the sample classes.
+        compile project(':services:sample')
+        compile 'javax.servlet:servlet-api:2.5'
+    }
+}

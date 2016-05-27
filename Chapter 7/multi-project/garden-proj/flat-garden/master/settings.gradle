@@ -1,0 +1,3 @@
+// Include tree and flower projects
+// as part of the build.
+includeFlat('tree', 'flower')

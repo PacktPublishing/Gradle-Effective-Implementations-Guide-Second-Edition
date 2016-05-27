@@ -1,0 +1,25 @@
+import java.util.concurrent.Callable
+
+// Use URL instance to locate file.
+def url = new URL('file:/README')
+File readme = file(url)
+
+// Or a URI instance.
+def uri = new URI('file:/README')
+def readmeFile = file(uri)
+
+// Use a closure to determine the
+// file or directory name.
+def fileNames = ['src', 'web', 'config']
+def configDir = file {
+    fileNames.find { fileName ->
+        fileName.startsWith('config')
+    }
+}
+
+// Use Callable interface.
+def source = file(new Callable<String>() {
+    String call() {
+        'src'
+    }
+})

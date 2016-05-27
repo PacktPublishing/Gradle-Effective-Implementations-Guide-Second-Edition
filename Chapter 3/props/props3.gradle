@@ -1,0 +1,6 @@
+task showProperties {
+    doLast {
+        println "Version: $version"
+        println "Custom property: $customProperty"
+    }
+}

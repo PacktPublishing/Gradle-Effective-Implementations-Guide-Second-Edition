@@ -1,0 +1,90 @@
+apply plugin: 'java'
+apply plugin: 'eclipse'
+
+version = 1.0
+
+description = 'Sample project'
+
+ext {
+    slf4jVersion = '1.7.18'
+    slf4jGroup = 'org.slf4j'
+}
+
+configurations {
+    extraLib
+}
+
+repositories {
+    jcenter()
+}
+
+dependencies {
+    testCompile 'junit:junit:4.11'
+
+    extraLib "$slf4jGroup:slf4j-api:$slf4jVersion",
+             "$slf4jGroup:slf4j-simple:$slf4jVersion"
+}
+
+eclipse {
+    pathVariables 'APPSERVER_HOME': file('/apps/appserver/1.0')
+
+    // Customize .project file.
+    project {
+        // Override default project name from project
+        // and set explicitly.
+        name = 'sample-eclipse'
+
+        // Set comment section in .project file.
+        comment = 'Eclipse project file build by Gradle'
+
+        // Add new natures like Spring nature.
+        natures 'org.springframework.ide.eclipse.core.springnature'
+
+        // Add build command for Spring.
+        buildCommand 'org.springframework.ide.eclipse.core.springbuilder'
+
+        // If using location attribute
+        // then type 1 is file, 2 is folder
+        linkedResource name: 'config', type: '2',
+                       location: file('/opt/local/config')
+
+        // If using locationUri attribute
+        // then type 1 for file/folder, 2 is virtual folder
+        linkedResource name: 'config2', type: '1',
+                       locationUri: 'file:../config'
+
+        // Define reference to other project. This is not
+        // a build path reference.
+        referencedProjects 'other-project'
+    }
+
+    // Customize .classpath file.
+    classpath {
+        // Add extra dependency configurations.
+        plusConfigurations += configurations.extraLib
+
+        // Remove dependency configurations.
+        minusConfigurations += configurations.testCompile
+
+        // Included configurations are not exported.
+        noExportConfigurations += configurations.testCompile
+
+        // Download associated source files.
+        downloadSources = true
+
+        // Download Javadoc for dependencies.
+        downloadJavadoc = true
+
+        // Add extra containers.
+        containers 'ApacheCommons'
+
+        // Change default output dir (${projectDir}/bin)
+        defaultOutputDir file("$buildDir/eclipse-classes")
+    }
+
+    // Customize org.eclipse.jdt.core.prefs file.
+    jdt {
+        sourceCompatibility = 1.8
+        targetCompatibility = 1.8
+    }
+}

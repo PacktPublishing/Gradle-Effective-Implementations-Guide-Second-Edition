@@ -1,0 +1,26 @@
+// Define a closure with ANT-style
+// pattern for files.
+def getTextFiles = {
+    '**/*.txt'
+}
+
+task copyTask(type: Copy) {
+    // Copy from directory.
+    from 'src/webapp'
+
+    // Copy single file.
+    from 'README.txt'
+
+    // Include files with html extension.
+    include '**/*.html', '**/*.htm'
+
+    // Use closure to resolve files.
+    include getTextFiles
+
+    // Exclude file INSTALL.txt.
+    exclude 'INSTALL.txt'
+
+    // Copy into directory dist
+    // resolved via closure.
+    into { file('dist') }
+}

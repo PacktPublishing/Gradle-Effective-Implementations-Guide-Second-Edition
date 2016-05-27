@@ -1,0 +1,10 @@
+// Define closure with task action.
+def printTaskName = { task ->
+    println "Run ${task.name}"
+}
+
+task first << printTaskName
+
+task second(dependsOn: first) << printTaskName
+
+task third(dependsOn: [second, first]) << printTaskName

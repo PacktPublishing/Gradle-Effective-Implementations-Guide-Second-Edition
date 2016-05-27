@@ -1,0 +1,22 @@
+apply plugin: 'java'
+
+repositories {
+    jcenter()
+}
+
+ext {
+    springVersion = '4.2.3.RELEASE'
+    springGroup = 'org.springframework'
+}
+
+dependencies {
+    // Use attributes to define dependency and
+    // refer to project properties.
+    compile(group: springGroup,
+            name: 'spring-core',
+            version: springVersion)
+
+    // Use String notation with expression support
+    // for variables.
+    runtime("$springGroup:spring-aop:$springVersion")
+}

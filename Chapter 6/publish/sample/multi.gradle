@@ -1,0 +1,34 @@
+apply plugin: 'java'
+
+archivesBaseName = 'gradle-sample'
+version = '1.0'
+
+// New task to archive the source files.
+task sourcesJar(type: Jar) {
+    classifier = 'sources'
+    from sourceSets.main.allSource
+}
+
+// New task to archive the documentation.
+task docJar(type: Jar, dependsOn: javadoc) {
+    classifier = 'docs'
+    from javadoc.destinationDir
+}
+
+artifacts {
+    // Assign the output of the sourcesJar
+    // task to the archives configuration.
+    archives sourcesJar
+
+    // Assign the output of the docJar
+    // task to the archives configuration.
+    archives docJar
+}
+
+uploadArchives {
+    repositories {
+        flatDir {
+            dirs 'upload'
+        } 
+    }
+}

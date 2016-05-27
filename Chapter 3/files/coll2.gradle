@@ -1,0 +1,3 @@
+def urlFiles =
+    files(new URI('file:/README'),
+        new URL('file:/INSTALL'))

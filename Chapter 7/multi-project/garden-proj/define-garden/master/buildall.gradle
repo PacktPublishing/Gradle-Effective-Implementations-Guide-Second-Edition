@@ -1,0 +1,7 @@
+allprojects {
+    // Add task printInfo to all projects:
+    // master, flower and tree
+    task printInfo << {
+        println "This is ${project.name}"
+    }
+}

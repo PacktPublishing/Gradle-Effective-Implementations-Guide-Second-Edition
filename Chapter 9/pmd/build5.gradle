@@ -1,0 +1,11 @@
+apply plugin: 'java'
+apply plugin: 'pmd'
+
+repositories {
+    jcenter()
+}
+
+pmd {
+    // Use a different version of PMD.
+    toolVersion = '5.4.1'
+}

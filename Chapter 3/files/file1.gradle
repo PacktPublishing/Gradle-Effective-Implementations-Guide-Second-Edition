@@ -1,0 +1,6 @@
+// Use String for file reference.
+File wsdl = file('src/wsdl/sample.wsdl')
+
+// Use File object for file reference.
+File xmlFile = new File('xml/input/sample.xml')
+def inputXml = project.file(xmlFile)

@@ -1,0 +1,26 @@
+buildscript {
+    repositories {
+        maven {
+            // Define local directory lib
+            // as Maven repository. This directory
+            // contains the plugin we build ourselves.
+            url = 'file:../lib'
+        }
+    }
+
+    dependencies {
+        classpath group: 'sample.infoplugin',
+                  name: 'infoplugin',
+                  version: '1.0'
+    }
+}
+
+// Apply plugin. We can use the value 'info',
+// because we packaged our plugin with the file
+// info.properties.
+apply plugin: 'info'
+
+info {
+    // Set prefix property for InfoPlugin.
+    prefix = "Gradle version"
+}

@@ -1,0 +1,40 @@
+task numbers << {
+    // To define a range of numbers
+    // we can use the following syntax:
+    // start..end.
+    // The each method executes the code
+    // in the closure for each element
+    // in a collection, like a range.
+    (1..4).each { number ->
+        // def is short for define. 
+        // Used to define a variable without
+        // an explicit type of the variable.
+        def squared = number * number
+
+        // Use GString with ${} expression
+        // to get a new string value where
+        // the value references are replaced
+        // with the actual values.
+        println "Square of ${number} = ${squared}"
+    }
+}
+
+task list {
+    doFirst {
+        // Simple notation to define a list of values
+        // in Groovy using square brackets.
+        def list = ['Groovy', 'Gradle']
+
+        // Groovy makes working with collections
+        // easy and adds utility methods to work
+        // with elements in the collection.
+        // The collect method transform each element
+        // in the original collection with the return
+        // value of the closure. Here all string elements
+        // are turned into lower case values.
+        // The join method joins all elements separated by
+        // the given character. The end result is
+        // groovy&gradle
+        println list.collect { it.toLowerCase() }.join('&')
+    }
+}

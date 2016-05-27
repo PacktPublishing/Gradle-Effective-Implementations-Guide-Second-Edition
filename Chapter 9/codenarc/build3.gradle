@@ -1,0 +1,30 @@
+apply plugin: 'groovy'
+apply plugin: 'codenarc'
+
+repositories {
+    jcenter()
+}
+
+codenarc {
+    configFile = file('config/codenarc/rules.groovy')
+
+    // Change output directory for reports.
+    reportsDir = file("${reporting.baseDir}/codenarc-output")
+}
+
+tasks.withType(CodeNarc) { task ->
+    reports {
+        // Enable text format.
+        text {
+            enabled = true
+        }
+
+        // Configure XML output.
+        xml {
+            enabled = true
+            
+            // Change destination file.
+            destination = file("${codenarc.reportsDir}/${task.name}.xml")
+        }
+    }
+}

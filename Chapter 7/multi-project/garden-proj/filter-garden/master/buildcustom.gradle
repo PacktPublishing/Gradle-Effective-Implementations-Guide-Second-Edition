@@ -1,0 +1,23 @@
+allprojects {
+    task printInfo << {
+        println "This is ${project.name}"
+    }
+}
+
+subprojects {
+    printInfo << {
+        println "Can be planted"
+    }
+}
+
+project(':tree') {
+    printInfo << {
+        println "Has leaves"
+    }
+}
+
+project(':flower') {
+    printInfo << {
+        println "Smells nice"
+    }
+}

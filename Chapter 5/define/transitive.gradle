@@ -1,0 +1,19 @@
+apply plugin: 'java'
+
+repositories {
+    jcenter()
+}
+
+dependencies {
+    // Configure transitive property with closure.
+    compile('org.slf4j:slf4j-simple:1.7.13') {
+        transitive = false
+    }
+
+    // Or we can use the transitive property
+    // as argument.
+    compile(group: 'org.slf4j',
+            name: 'slf4j-simple',
+            version: '1.7.13',
+            transitive: false)
+}

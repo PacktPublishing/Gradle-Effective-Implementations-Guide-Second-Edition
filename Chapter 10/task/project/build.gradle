@@ -1,0 +1,5 @@
+// Define new task of type sample.InfoTask.
+task info(type: sample.InfoTask) {
+    // Set task property/
+    prefix = "Running Gradle"
+}

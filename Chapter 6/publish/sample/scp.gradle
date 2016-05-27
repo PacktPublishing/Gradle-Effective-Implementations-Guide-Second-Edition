@@ -1,0 +1,29 @@
+apply plugin: 'java'
+apply plugin: 'maven'
+
+archivesBaseName = 'gradle-sample'
+group = 'gradle.sample'
+version = '1.0'
+
+configurations {
+    mavenScp
+}
+
+repositories {
+    jcenter()
+}
+
+dependencies {
+    mavenScp 'org.apache.maven.wagon:wagon-scp:1.0-beta-2'
+}
+
+uploadArchives {
+    repositories {
+        mavenDeployer {
+            configuration = configurations.mavenScp
+            repository(url: 'scp://localhost/mavenRepo') {
+                authentication(username: 'user', privateKey: 'id_sha')
+            }
+        } 
+    }
+}

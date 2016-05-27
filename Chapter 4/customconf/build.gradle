@@ -1,0 +1,30 @@
+apply plugin: 'java'
+
+sourceSets {
+    main {
+        java {
+            srcDir 'src/java'
+        }
+        resources {
+            srcDir 'resources/java'
+        }
+    }
+
+    test {
+        java {
+            srcDir 'test/unit/java'
+        }
+        resources {
+            srcDir 'resources/test'
+        }
+    }
+
+    'integeration-test' {
+        java {
+            srcDir 'test/integration/java'
+        }
+        resources {
+            srcDir 'resources/test'
+        }
+    }
+}

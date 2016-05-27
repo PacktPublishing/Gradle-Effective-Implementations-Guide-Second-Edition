@@ -1,0 +1,43 @@
+apply plugin: 'java'
+apply plugin: 'idea'
+
+version = 1.0
+
+description = 'Sample project'
+
+repositories {
+    jcenter()
+}
+
+dependencies {
+    testCompile 'junit:junit:4.8'
+}
+
+
+idea {
+    project {
+        ipr {
+            beforeMerged { iprProject ->
+                iprProject.wildCards.removeAll()
+            }
+
+            whenMerged { iprProject ->
+                iprProject.wildCards.add '!?*.xsd'
+            }
+        }
+    }
+
+    module {
+        iml {
+            beforeMerged { imlModule ->
+                imlModule.outputDir = null
+            }
+
+            whenMerged { imlModule ->
+                imlModule.jdkName = '1.8'
+                module.dependencies*.exported = true
+                imlModule.excludeFolders.add file('.svn')
+            }
+        }
+    }
+}

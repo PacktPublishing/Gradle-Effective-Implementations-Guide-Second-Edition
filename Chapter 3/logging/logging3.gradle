@@ -1,0 +1,13 @@
+logging.captureStandardOutput LogLevel.INFO
+println 'This message is now logged with log level info instead of quiet'
+
+task redirectLogging {
+    doFirst {
+        // Use default redirect log level quiet.
+        println 'Start task redirectLogging'
+    }
+    doLast {
+        logging.captureStandardOutput LogLevel.INFO
+        println 'Finished task redirectLogging'
+    }
+}

@@ -1,0 +1,16 @@
+apply plugin: 'java'
+apply plugin: 'findbugs'
+
+repositories {
+    jcenter()
+}
+
+// Global setting for all findbugs tasks.
+findbugs {
+    ignoreFailures = true
+}
+
+// We can change ignoreFailures property also per task.
+findbugsMain {
+    ignoreFailures = false
+}

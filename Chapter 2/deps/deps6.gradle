@@ -1,0 +1,22 @@
+def printTaskName = { task ->
+    println "Run ${task.name}"  
+}
+
+task second << printTaskName
+
+// We use the dependsOn method
+// with a closure.
+second.dependsOn {
+    // We use the Groovy method findAll
+    // that returns all tasks that
+    // apply to the condition we define
+    // in the closure: the task name 
+    // starts with the letter 'f'.
+    project.tasks.findAll { task ->
+        task.name.contains 'f'
+    } 
+}
+
+task first << printTaskName
+
+task beforeSecond << printTaskName

@@ -1,0 +1,21 @@
+task convert {
+    // Define source and output properties
+    // for this task.
+    ext {
+        source = new File('source.xml')
+        output = new File('output.txt')
+    }
+    
+    // Read XML file and show contents on System.out.
+    doLast {
+        def xml = new XmlSlurper().parse(source)
+        
+        output.withPrintWriter { writer ->
+            xml.person.each { person ->
+               writer.println "${person.name},${person.email}"
+            }
+        }
+
+        println "Converted ${source.name} to ${output.name}"
+    }
+}

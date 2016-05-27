@@ -1,0 +1,23 @@
+apply plugin: 'java'
+
+repositories {
+    ivy {
+        url = 'http://intranet/custom'
+        ivyPatterns '[module]/[revision]/ivy.xml'
+        artifactPatterns '[module]/[revision]/[artifact](.[ext])'
+    }
+}
+
+dependencies {
+    // Use configuration property in method arguments.
+    testCompile
+        group: 'sample',
+        name: 'logging',
+        version: '1.0',
+        configuration: 'test'
+
+    // Or we use a closure to set the property.
+    testCompile('sample:logging:1.0') {
+        configuration = 'test'
+    }
+}

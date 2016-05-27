@@ -1,0 +1,17 @@
+apply plugin: 'java'
+
+repositories {
+    jcenter()
+}
+
+dependencies {
+    // Use artifact-only notation with @ symbol.
+    runtime('org.slf4j:slf4j-simple:1.7.13@jar')
+
+    // Or we can use the ext property
+    // as method argument.
+    runtime(group: 'org.slf4j',
+            name: 'slf4j-simple',
+            version: '1.7.13',
+            ext: 'jar')
+}

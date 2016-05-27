@@ -1,0 +1,14 @@
+apply plugin: 'java'
+
+sourceSets {
+    api
+    main {
+        compileClasspath += files(api.output.classesDir)
+    }
+}
+
+classes.dependsOn apiClasses
+
+javadoc {
+    source sourceSets.api.allJava
+}

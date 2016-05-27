@@ -1,0 +1,20 @@
+/**
+ * New class that defines a Gradle task.
+ */
+class InfoTask extends DefaultTask {
+
+    /**
+     * Method that has the logic for the task.
+     * We tell this to Gradle with the @TaskAction annotation.
+     */
+    @TaskAction
+    def info() {
+        // Show current Gradle version.
+        println "Current Gradle version:$project.gradle.gradleVersion"
+    }
+}
+
+// Define new task in our Gradle build file
+// with name info and of type InfoTask.
+// InfoTask implementation is at the top.
+task info(type: InfoTask)

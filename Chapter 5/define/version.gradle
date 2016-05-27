@@ -1,0 +1,11 @@
+apply plugin: 'java'
+
+repositories {
+    jcenter()
+}
+
+dependencies {
+    compile(group: 'org.springframework',
+            name: 'spring-core',
+            version: '4.2.+')
+}

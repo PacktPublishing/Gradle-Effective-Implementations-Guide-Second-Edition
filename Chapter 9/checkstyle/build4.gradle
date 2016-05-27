@@ -1,0 +1,12 @@
+apply plugin: 'java'
+apply plugin: 'checkstyle'
+
+repositories {
+    jcenter()
+}
+
+// Configuration for Checkstyle.
+checkstyle {
+    // Use a different configuration file.
+    configFile = file('config/checkstyle/sun_checks.xml')
+}

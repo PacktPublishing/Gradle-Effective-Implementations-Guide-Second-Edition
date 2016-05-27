@@ -1,0 +1,22 @@
+// Define closure with task action.
+def printTaskName = { task ->
+    println "Running ${task.name}"
+}
+
+task 'one' {
+    // Invoke doFirst method to add action.
+    doFirst printTaskName
+}
+
+// Assign action through left-shift operator (<<).
+task 'two' << printTaskName
+
+task 'three' {
+    // This line will be displayed during configuration
+    // and not when we execute the task,
+    // because we use the configuration closure
+    // and forgot the << operator.
+    println "Running three"
+}
+
+defaultTasks 'one', 'two'

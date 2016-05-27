@@ -1,0 +1,39 @@
+/**
+ * Simple JavaBean class that acts as the
+ * extension point for the InfoPlugin.
+ */
+class InfoPluginExtension {
+
+    /**
+     * Define property that can be set by
+     * the user of the InfoPlugin.
+     */
+    String prefix = 'Running Gradle'
+
+}
+
+/**
+ * Plugin class that adds a new task to the project.
+ */
+class InfoPlugin implements Plugin<Project> {
+
+    void apply(Project project) {
+        // Add InfoPluginExtension to the project.
+        // The user can add a info{} configuration block in
+        // the build file to configure the plugin.
+        project.extensions.create('info', InfoPluginExtension)
+
+        // Add new info task to the project.
+        project.tasks.create('info') << {
+            // Use prefix set via info extension.
+            println "$project.info.prefix: $project.gradle.gradleVersion"
+        }
+    }
+
+}
+
+apply plugin: InfoPlugin
+
+info {
+    prefix = 'Gradle version'
+}

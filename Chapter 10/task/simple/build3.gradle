@@ -1,0 +1,29 @@
+/**
+ * New class that defines a Gradle task.
+ */
+class InfoTask extends DefaultTask {
+
+    /**
+     * An optional property for our task.
+     */
+    @Optional
+    String prefix = 'Current Gradle version'
+
+    /**
+     * Method that has the logic for the task.
+     * We tell this to Gradle with the @TaskAction annotation.
+     */
+    @TaskAction
+    def info() {
+        // Show current Gradle version.
+        println "$prefix: $project.gradle.gradleVersion"
+    }
+}
+
+// Define new task in our Gradle build file
+// with name info and of type InfoTask.
+// InfoTask implementation is at the top.
+// We give the optional property prefix a value.
+task info(type: InfoTask) {
+    prefix = 'Running Gradle'
+}

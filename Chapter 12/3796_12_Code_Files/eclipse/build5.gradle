@@ -1,0 +1,81 @@
+apply plugin: 'java'
+apply plugin: 'war'
+apply plugin: 'eclipse-wtp'
+
+version = 1.0
+
+description = 'Sample project'
+
+repositories {
+    jcenter()
+}
+
+dependencies {
+    testCompile 'junit:junit:4.11'
+}
+
+eclipse {
+    wtp {
+        component {
+            // Change context path of the Web application.
+            // Default value is project.war.baseName.
+            contextPath = '/sample-web'
+
+            // Path for the class files. Default for
+            // war plugin is '/WEB-INF/classes' and for
+            // ear plugin is '/'
+            classesDeployPath = '/WEB-INF/classes'
+
+            // Deploy name to use. Default for war and ear plugin
+            // is eclipse.project.name.
+            deployName = 'sample'
+
+            // Path to deploy libraries. The war plugin has
+            // the default '/WEB-INF/lib' and ear plugin
+            // has the default '/lib'.
+            libDeployPath = '/WEB-INF/lib'
+
+            // Extra wb-property elements of type WbProperty.
+            properties = []
+            // We can use the property() method to add a new property.
+            property name: 'test', value: 'gradle'
+
+            // Customize wb-resource elements of type WbResource.
+            // Default for war plugin is
+            // [deployPath: '/', sourcePath: project.webAppDirName] and
+            // for ear plugin is []
+            resources += [deployPath: '/css', sourcePath: 'src/main/css']
+            // We can use the resource() method to add a new wb-resource
+            resource deployPath: '/css', sourcePath: 'src/main/css'
+
+            // The name of dependency configurations whose files are
+            // placed as dependent-module elements with a deploy
+            // path of '/'.
+            // Default value for war plugin is [] and for the ear plugin
+            // is the default value [project.configurations.deploy]
+            rootConfigurations = []
+
+            // Remove configurations from the deployed configurations.
+            minusConfigurations += project.configurations.testCompile
+
+            // List of dependency configurations to need be included
+            // in the deployLibPath location.
+            libConfigurations += project.configurations.testCompile
+
+            // Value is converted to wb-resource in the configuration file.
+            // Default value for the war plugin is
+            // project.sourceSets.main.allSource and for the ear plugin is
+            // the same.
+            sourceDirs += file('src/main/css')
+        }
+
+        facet {
+            // We can use the facets property to add elements.
+            facets += [name: 'extra', version: '1.0']
+
+            // Or we can use the facet() method to add a key-value
+            // pair as facet.
+            facet name: 'gradle', version: '1.1'
+        }
+    }
+}

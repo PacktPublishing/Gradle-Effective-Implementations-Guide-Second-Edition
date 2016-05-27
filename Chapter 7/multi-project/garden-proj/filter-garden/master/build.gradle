@@ -1,0 +1,26 @@
+allprojects {
+    task printInfo << {
+        println "This is ${project.name}"
+    }
+}
+
+subprojects {
+    // After all projects have been evaluated
+    // the properties are set and we can check
+    // the value.
+    afterEvaluate { project ->
+        if (project.hasLeaves) {
+            printInfo << {
+                println "Has leaves"
+            }
+        }
+    }
+}
+
+project(':tree') {
+    ext.hasLeaves = true
+}
+
+project(':flower') {
+    ext.hasLeaves = false
+}

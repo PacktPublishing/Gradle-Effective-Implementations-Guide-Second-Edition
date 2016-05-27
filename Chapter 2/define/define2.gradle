@@ -1,0 +1,7 @@
+task second {
+    doLast {
+        // Using implicit 'it' closure parameter.
+        // The type of 'it' is a Gradle task.
+        println "Running ${it.name}"
+    }
+}

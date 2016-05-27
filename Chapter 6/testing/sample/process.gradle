@@ -1,0 +1,18 @@
+apply plugin: 'java'
+
+repositories {
+    jcenter()
+}
+
+dependencies {
+    testCompile('junit:junit:4.12')
+}
+
+test {
+    // Run four tests in parallel.
+    maxParallelForks = 4
+
+    // Restart proces after
+    // 10 executions.
+    forkEvery = 10
+}

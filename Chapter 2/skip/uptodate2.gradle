@@ -1,0 +1,44 @@
+project.version = '1.0'
+
+task createVersionDir {
+    ext {
+        outputDir = new File('output')
+    }
+
+    // If project.version changes then the
+    // task is no longer up-to-date
+    inputs.property 'version', project.version
+    
+    // Look for changes in the outputDir.
+    outputs.dir outputDir
+    
+    doLast {
+        println "Making directory ${outputDir.name}"
+        mkdir outputDir
+    } 
+}
+
+task convertFiles {
+    // Define multiple files to be checked as inputs.
+    // Or use inputs.dir 'input' to check a complete directory.
+    inputs.files 'input/input1.xml', 'input/input2.xml'
+
+    // Use upToDateWhen method to define predicate.
+    outputs.upToDateWhen {
+
+        // If output directory contains any file which name
+        // starts with output and has the xml extension,
+        // then the task is up-to-date.
+        // We use the Groovy method any to check
+        // if at least one file applies to the condition.
+        // The ==~ syntax is a Groovy shortcut to
+        // check if a regular expression is true.
+        new File('output')
+            .listFiles()
+            .any { it.name ==~ /output.*\.xml$/ } 
+    }
+
+    doLast {
+        println "Running convertFiles"
+    } 
+}

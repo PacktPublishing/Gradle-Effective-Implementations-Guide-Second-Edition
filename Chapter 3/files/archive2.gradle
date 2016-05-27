@@ -1,0 +1,17 @@
+// By using task type Zip we instruct
+// Gradle to create an archive
+// in ZIP format.
+task archiveFiles(type: Zip) {
+    from 'dist'
+
+    // Copy files to a directory inside the archive.
+    into 'files'
+
+    // Set destination directory for ZIP file.
+    // $buildDir refers to default Gradle
+    // build directory 'build/'.
+    destinationDir = file("$buildDir/zips")
+
+    // Set complete filename at once.
+    archiveName = 'dist-files.zip'
+}

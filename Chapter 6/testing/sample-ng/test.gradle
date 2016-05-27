@@ -1,0 +1,20 @@
+apply plugin: 'java'
+
+repositories {
+    jcenter()
+}
+
+dependencies {
+    testCompile('junit:junit:4.12')
+    testCompile('org.testng:testng:6.5.1')
+}
+
+// New task of type Test
+// for running TestNG classes.
+task testNG(type: Test) {
+    useTestNG()
+}
+
+// Make sure testNG is executed,
+// when the test task is executed.
+test.dependsOn(testNG)

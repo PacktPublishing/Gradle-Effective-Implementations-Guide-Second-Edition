@@ -1,0 +1,4 @@
+task collectionPath << {
+    def fileCollection = files('README', 'INSTALL')
+    println fileCollection.asPath
+}

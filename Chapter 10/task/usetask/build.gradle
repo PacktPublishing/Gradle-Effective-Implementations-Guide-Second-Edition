@@ -1,0 +1,19 @@
+buildscript {
+    repositories {
+        maven {
+            // Set Maven repository to the local
+            // directory we also used to publish
+            // our custom Gradle task.
+            url = 'file:../lib'
+        }
+    }
+    dependencies {
+        // Define dependency on the InfoTask implementation
+        // for this build script.
+        classpath group: 'sample.infotask',
+                  name: 'infotask',
+                  version: '1.0'
+    }
+}
+
+task info(type: sample.InfoTask) 

@@ -1,0 +1,41 @@
+class ConvertTask extends DefaultTask {
+
+    /**
+     * Input file for this task and by
+     * using the @InputFile annotation we
+     * tell Gradle the file can be used
+     * for determining incremental build support.
+     */
+    @InputFile
+    File source
+
+    /**
+     * Output file for this task and by
+     * using the @OutputFile annotation we
+     * tell Gradle the file can be used
+     * for determining incremental build support.
+     */
+    @OutputFile
+    File output
+
+    /**
+     * Method with the real implementation of the task.
+     * We convert the source file and save the output.
+     */
+    @TaskAction
+    void convert() {
+        def xml = new XmlSlurper().parse(source)
+        output.withPrintWriter { writer ->
+            xml.person.each { person ->
+                writer.println "${person.name},${person.email}"
+            }
+        }
+        println "Converted ${source.name} to ${output.name}"
+    }
+}
+
+// Configure task for this build
+task convert(type: ConvertTask) {
+    source = file("src/people.xml")
+    output = file("$buildDir/convert-output.txt")
+}

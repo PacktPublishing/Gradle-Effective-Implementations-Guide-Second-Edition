@@ -1,0 +1,14 @@
+apply plugin: 'java'
+
+dependencies {
+    // Define a dependency on projectA
+    // for the code in our project.
+    compile(project(':projectA'))
+
+    // Define a dependency on projectB,
+    // and use specifically the configuration
+    // compile.
+    compile(project(':projectB')) {
+        configuration = 'compile'
+    }
+}

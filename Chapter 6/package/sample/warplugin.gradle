@@ -1,0 +1,33 @@
+apply plugin: 'war'
+
+version = '1.0'
+
+repositories {
+    jcenter()
+}
+
+configurations {
+    extraLibs
+}
+
+dependencies {
+    // We use the extra configurations
+    // added by the war plugin.
+    providedCompile 'javax.servlet:servlet-api:3.0'
+    providedRuntime 'webcontainer:logging:1.0'
+    
+    // Define dependencies for the custom configuration.
+    extraLibs 'sample:lib:2.1'
+}
+
+war {
+    // Customize the war task and
+    // dependencies in the extraLibs configuration
+    classpath configuration.extraLibs
+    
+    // Use a custom web.xml.
+    webXml = file('src/main/webXml/web-dev.xml')
+    
+    // Set base name for the generated WAR file.
+    baseName = 'gradle-webapp'
+}

@@ -1,0 +1,4 @@
+task createWrapper(type: Wrapper) {
+    // Set URL with custom Gradle distribution.
+    distributionUrl = 'http://intranet/gradle/dist/gradle-1.0.2.zip'
+}

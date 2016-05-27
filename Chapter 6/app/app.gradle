@@ -1,0 +1,14 @@
+apply plugin: 'application'
+
+mainClassName = 'gradle.sample.SampleApp'
+
+// Extra configuration for run task if needed.
+run {
+    // Extra options can be set.
+    systemProperty 'sysProp', 'notUsed'
+    jvmArgs '-client'
+    
+    // We can pass arguments to the main() method
+    // of gradle.sample.SampleApp.
+    args 'mainMethodArgument', 'notUsed'
+}

@@ -1,0 +1,18 @@
+// Name of task as variable.
+def simpleTask = 'simple'
+
+// Using Groovy GString with
+// ${} expression to use variable
+// as task name.
+task "${simpleTask}" << { task ->
+    println "Running ${task.name}"
+}
+
+// Or use loops to create multiple tasks.
+['Dev', 'Acc', 'Prod'].each { environment ->
+    // A new task is created for each element
+    // in the list ['Dev', 'Acc', 'Prod'].
+    task "deployTo${environment}" << { task ->
+        println "Deploying to ${environment}"
+    } 
+}

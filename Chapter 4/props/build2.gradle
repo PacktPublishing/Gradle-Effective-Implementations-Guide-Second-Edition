@@ -1,0 +1,24 @@
+apply plugin: 'java'
+
+archivesBaseName = 'gradle-sample'
+version = '1.0'
+
+sourceCompatibility = JavaVersion.VERSION_1_8 // Or '1.8' or 8
+
+jar {
+    manifest {
+        attributes(
+            'Implementation-Version' : version,
+            'Implementation-Title' : 'Gradle Sample'
+        )
+    }
+}
+
+sourceSets {
+    api
+    main {
+        compileClasspath += files(api.output.classesDir)
+    }
+}
+
+classes.dependsOn apiClasses

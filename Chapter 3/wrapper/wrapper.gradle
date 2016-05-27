@@ -1,0 +1,13 @@
+task createWrapper(type: Wrapper) {
+    // Set Gradle version for wrapper files.
+    gradleVersion = '2.7'
+
+    // Rename shell scripts name to
+    // startGradle instead of default gradlew.
+    scriptFile = 'startGradle'
+
+    // Change location and name of JAR file
+    // with wrapper bootstrap code and
+    // accompanying properties files.
+    jarFile = "${projectDir}/gradle-bin/gradle-bootstrap.jar"
+}

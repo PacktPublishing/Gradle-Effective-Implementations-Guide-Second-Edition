@@ -1,0 +1,19 @@
+apply plugin: 'java'
+
+repositories {
+    jcenter()
+}
+
+dependencies {
+    // Use artifact-only notation with @ symbol
+    // together with classifier jdk16.
+    compile('sample:simple:1.0:jdk16@jar')
+
+    // Or we can use the classifier property
+    // as method argument.
+    compile(
+        group: 'sample',
+        name: 'simple',
+        version: '1.0',
+        classifier: 'jdk16')
+}

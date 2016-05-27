@@ -1,0 +1,20 @@
+// Create file tree with base directory 'src/main'
+// and only include files with extension .java
+def srcDir = fileTree('src/main').include('**/*.java')
+
+// Use map with arguments to create a file tree.
+def resources =
+    fileTree(dir: 'src/main',
+           excludes: ['**/*.java', '**/*.groovy'])
+
+// Create file tree with project directory as base
+// directory and use method include() on tree
+// object to include 2 files.
+def base = fileTree('.')
+base.include 'README', 'INSTALL'
+
+// Use closure to create file tree.
+def javaFiles = fileTree {
+    from 'src/main/java'
+    exclude '*.properties'
+}

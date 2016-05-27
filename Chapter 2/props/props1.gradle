@@ -1,0 +1,18 @@
+// Create simple task.
+task simple << {
+    // Use ext namespace to define
+    // new task properties.
+    // Alternative syntax is:
+    // ext.message = 'Gradle'
+    ext {
+        message = 'Gradle'
+    }
+
+    println "Hello ${message}"
+}
+
+// We set the value for 
+// the non-existing message
+// property with the task extension
+// support.
+simple.ext.message = 'world'

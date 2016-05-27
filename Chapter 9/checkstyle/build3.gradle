@@ -1,0 +1,18 @@
+apply plugin: 'java'
+apply plugin: 'checkstyle'
+
+repositories {
+    jcenter()
+}
+
+dependencies {
+    // To use a different version we can change
+    // the dependency for the checkstyle configuration.
+    checkstyle group: 'com.puppycrawl.tools',
+               name: 'checkstyle',
+               version: '5.7'
+}
+
+checkstyle {
+    toolVersion = '5.7'
+}

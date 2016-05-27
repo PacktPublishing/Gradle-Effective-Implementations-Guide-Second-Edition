@@ -1,0 +1,15 @@
+task listDirectory {
+    // New property for this task.
+    ext {
+        dir = new File('assemble')
+    }
+
+    // Set value for enabled task property.
+    enabled = dir.exists()
+    
+    // This is only executed if enabled is true.
+    doLast {
+        println "List directory contents: " + 
+                dir.listFiles().join(',')
+    } 
+}

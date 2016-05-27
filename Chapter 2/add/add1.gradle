@@ -1,0 +1,3 @@
+task 'simple' << { task ->
+    println "Running ${task.name}"
+}

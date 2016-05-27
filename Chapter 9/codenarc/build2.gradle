@@ -1,0 +1,13 @@
+apply plugin: 'groovy'
+apply plugin: 'codenarc'
+
+repositories {
+    jcenter()
+}
+
+codenarc {
+    // Keep running the build even
+    // if there are violations. We can
+    // check the reports for violations.
+    ignoreFailures = true
+}

@@ -1,0 +1,13 @@
+task tarFiles(type: Tar) {
+   from 'dist'
+
+   // Set destination directory.
+   destinationDir = file("$buildDir/tarballs")
+
+   // Set filename properties.
+   baseName = 'dist-files'
+   // extension = 'tar.gz'
+
+   // Use gzip compression.
+   compression = Compression.GZIP // or Compression.BZIP2
+}

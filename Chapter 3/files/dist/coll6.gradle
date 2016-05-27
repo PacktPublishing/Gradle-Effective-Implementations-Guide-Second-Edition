@@ -1,0 +1,11 @@
+// Define collection.
+def fileCollection = files('README', 'INSTALL')
+
+// Remove INSTALL file from collection.
+def readme = fileCollection - files('INSTALL')
+
+// Add new collection to existing collection.
+def moreFiles =
+    fileCollection +
+    files(file('config',
+            PathValidation.DIRECTORY))
